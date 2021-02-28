@@ -21,14 +21,14 @@ rockets = ["falcon1", "falcon9", "falconheavy"]
 for rocket_type in rockets:
     t1 = BashOperator(
         task_id="get_data", 
-        bash_command="python3 /root/airflow/dags/spacex/load_launches.py -y {{ execution_date.year }} -o /var/data -r {rocket_type}", 
+        bash_command="python3 /root/airflow/dags/spacex/load_launches.py -y {{ execution_date.year }} -o /var/data -r" + rocket_type, 
         dag=dag
     )
     
     t2 = BashOperator(
         task_id="print_data", 
         bash_command="cat /var/data/year={{ execution_date.year }}/rocket={{ params.rocket }}/data.csv", 
-        params={"rocket": {rocket_type}}, # falcon1/falcon9/falconheavy
+        params={"rocket": rocket_type}, # falcon1/falcon9/falconheavy
         dag=dag
     )
     
