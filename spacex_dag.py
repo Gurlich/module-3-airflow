@@ -25,7 +25,7 @@ for rocket_type in rockets:
 
     t1 = BashOperator(
         task_id="get_data_" + rocket_type, 
-        bash_command=get_rocket_bash
+        bash_command=get_rocket_bash,
         dag=dag
     )
     
