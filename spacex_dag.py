@@ -19,7 +19,7 @@ dag = DAG("spacex", default_args=default_args, schedule_interval="0 0 1 1 *")
 rockets = ["all", "falcon1", "falcon9", "falconheavy"]
 
 for rocket_type in rockets:
-    get_rocket = " -r " + rocket_type,
+    get_rocket = " -r " + str(rocket_type),
     if rocket_type == "all":
         get_rocket = ""
         
