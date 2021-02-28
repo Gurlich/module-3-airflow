@@ -19,7 +19,7 @@ dag = DAG("spacex", default_args=default_args, schedule_interval="0 0 1 1 *")
 rockets = ["all", "falcon1", "falcon9", "falconheavy"]
 
 for rocket_type in rockets:
-    get_rocket_bash = "python3 /root/airflow/dags/spacex/load_launches.py -y {{ execution_date.year }} -o /var/data -r" + get_rocket
+    get_rocket_bash = "python3 /root/airflow/dags/spacex/load_launches.py -y {{ execution_date.year }} -o /var/data -r " + rocket_type
     if rocket_type == "all":
         get_rocket_bash = "python3 /root/airflow/dags/spacex/load_launches.py -y {{ execution_date.year }} -o /var/data"
 
